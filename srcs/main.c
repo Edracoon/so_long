@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:28 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 11:34:22 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 13:37:06 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
 
-void	ft_error(char *str)
+void	ft_error(char *str, t_data *d)
 {
+	(void)d;
 	ft_putstr_fd(str, STDOUT_FILENO);
 	exit(0);
 }
@@ -41,7 +42,7 @@ void	init_data(t_data *d)
 	d->nbplayer = 0;
 	d->win_x = 0;
 	d->win_y = 0;
-	d->cubsize = 0;
+	d->cubsize = 16;
 	d->posx = 0;
 	d->posy = 0;
 	d->kill_win = 0;
@@ -58,10 +59,11 @@ int	main(int ac, char **av)
 	t_data d;
 
 	if (ac != 2)
-		ft_error("Error:\nNumber of arguments\n");
+		ft_error("Error\nNumber of arguments\n", &d);
 	init_data(&d);
 	if (!check_map_name(av[1]))
-		ft_error("Error:\nMap name invalid\n");
+		ft_error("Error\nMap name invalid\n", &d);
 	parse_ber(av[1], &d);
+	mlx_main(&d);
 	return (1);
 }

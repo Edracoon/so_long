@@ -6,13 +6,52 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:34:01 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 11:42:50 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 13:08:21 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
+
+int	is_char_valid(char c)
+{
+	if (c == '1' || c == '0' || c == 'E' || c == 'C' || c == 'P')
+		return (1);
+	return (0);
+}
+
+void	check_valid_char(int i, int j, t_data *d)
+{
+	if (i - 1 < 0 || j - 1 < 0 || j + 1 >= d->sizeline)
+		ft_error("Error\nMap isn't closed || sensitive char in border of map\n", d);
+}
+
+void	parse_map(t_data *d)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (++i < d->sizecollum)
+	{
+		j = -1;
+		while (++j < d->sizeline)
+		{
+			if (!(is_char_valid(d->map[i][j])))
+				ft_error("Error\nMap invalid (invalid char in map)\n", d);
+			if (d->map[i][j] == '0' || d->map[i][j] == 'P' ||
+				d->map[i][j] == 'E' || d->map[i][j] == 'C')
+				check_valid_char(i, j, d);
+			if (d->map[i][j] == 'P')
+				d->nbplayer += 1;
+			if (d->nbplayer > 1)
+				ft_error("Error\nNumber of player error\n", d);
+		}
+		printf("%s\n", d->map[i]);
+	}
+}
 
 void	stockage_map(t_data *d, char *file)
 {
@@ -25,10 +64,10 @@ void	stockage_map(t_data *d, char *file)
 	gnl = 1;
 	fd = open(file, O_DIRECTORY);
 	if (fd > 0)
-		ft_error("Error\nYou are trying to open a directory\n");
+		ft_error("Error\nYou are trying to open a directory\n", d);
 	fd = open(file, O_RDONLY);
 	if (!fd)
-		ft_error("Error:\nCouldn't open the .ber\n");
+		ft_error("Error\nCouldn't open the .ber\n", d);
 	while (gnl > 0 && i < d->sizecollum)
 	{
 		gnl = get_next_line(fd, &line);
@@ -37,12 +76,5 @@ void	stockage_map(t_data *d, char *file)
 		line = NULL;
 		i++;
 	}
-	i = -1;
-	while (++i < d->sizecollum)
-	{
-		int j = -1;
-		while (++j < d->sizeline)
-			printf("%c", d->map[i][j]);
-		printf("\n");
-	}
+	parse_map(d);
 }

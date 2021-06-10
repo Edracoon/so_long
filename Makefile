@@ -7,6 +7,7 @@ LIB_DIR = /usr/local/include
 SRCS =	srcs/main.c \
 		srcs/init_map_ber.c \
 		srcs/stockage_map.c \
+		srcs/mlx_main.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c
 

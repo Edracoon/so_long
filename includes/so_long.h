@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 11:36:18 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 13:11:40 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 
 void	stockage_map(t_data *d, char *file);
 void	parse_ber(char *file, t_data *d);
-void	ft_error(char *str);
+void	ft_error(char *str, t_data *d);
+void	mlx_main(t_data *d);
 
 #endif

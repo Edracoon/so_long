@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:07:47 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 11:40:09 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 13:06:43 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,26 @@ void	map_malloc(t_data *d)
 	printf("size collum = %i | sizeline = %i\n", d->sizecollum, d->sizeline);
 	d->map = (char **)malloc(sizeof(char *) * (d->sizecollum + 1));
 	if (!(d->map))
-		ft_error("Error:\nMalloc error\n");
+		ft_error("Error\nMalloc error\n", d);
 	while (++i < d->sizecollum)
 	{
 		d->map[i] = (char *)malloc(sizeof(char) * (d->sizeline + 1));
 		if (!(d->map[i]))
-			ft_error("Error:\nMalloc error\n");
+			ft_error("Error\nMalloc error\n", d);
 	}
-
 }
 
-void	count_map_size(char	*line, t_data *d)
+void	count_map_size(char	*line, t_data *d, int i)
 {
 	int	sizeline;
 
+	if (!(line[0]))
+		return ;
 	sizeline = ft_strlen(line);
-	if (sizeline > d->sizeline)
+	if (i == 0)
 		d->sizeline = sizeline;
+	if (sizeline > d->sizeline || sizeline < d->sizeline)
+		ft_error("Error\nMap is not rectangular\n", d);
 	d->sizecollum += 1;
 }
 
@@ -47,18 +50,21 @@ void	parse_ber(char *file, t_data *d)
 	int		fd;
 	int		gnl;
 	char	*line;
+	int		i;
 
+	i = 0;
 	gnl = 1;
 	fd = open(file, O_DIRECTORY);
 	if (fd > 0)
-		ft_error("Error\nYou are trying to open a directory\n");
+		ft_error("Error\nYou are trying to open a directory\n", d);
 	fd = open(file, O_RDONLY);
-	if (!fd)
-		ft_error("Error:\nCouldn't open the .ber\n");
+	if (fd == -1)
+		ft_error("Error\nCouldn't open the .ber\n", d);
 	while (gnl > 0)
 	{
 		gnl = get_next_line(fd, &line);
-		count_map_size(line, d);
+		count_map_size(line, d, i);
+		i++;
 		free(line);
 		line = NULL;
 	}
