@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:07:47 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 13:06:43 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 16:55:33 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,9 @@ void	map_malloc(t_data *d)
 	int	i;
 
 	i = -1;
-	printf("size collum = %i | sizeline = %i\n", d->sizecollum, d->sizeline);
-	d->map = (char **)malloc(sizeof(char *) * (d->sizecollum + 1));
+	d->map = (char **)malloc(sizeof(char *) * (d->sizecollum));
 	if (!(d->map))
 		ft_error("Error\nMalloc error\n", d);
-	while (++i < d->sizecollum)
-	{
-		d->map[i] = (char *)malloc(sizeof(char) * (d->sizeline + 1));
-		if (!(d->map[i]))
-			ft_error("Error\nMalloc error\n", d);
-	}
 }
 
 void	count_map_size(char	*line, t_data *d, int i)

@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:34:01 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 13:08:21 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 17:15:28 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,18 @@ int	is_char_valid(char c)
 
 void	check_valid_char(int i, int j, t_data *d)
 {
-	if (i - 1 < 0 || j - 1 < 0 || j + 1 >= d->sizeline)
-		ft_error("Error\nMap isn't closed || sensitive char in border of map\n", d);
+	if (i - 1 < 0 || j - 1 < 0
+		|| j + 1 >= d->sizeline || i + 1 >= d->sizecollum)
+		ft_error("Error\nMap isn't closed\n", d);
+	if (d->map[i][j] == 'P')
+	{
+		d->posx = j * d->cubsize;
+		d->posy = i * d->cubsize;
+		d->nbplayer += 1;
+		d->map[i][j] = '0';
+	}
+	if (d->map[i][j] == 'C')
+		d->collec += 1;
 }
 
 void	parse_map(t_data *d)
@@ -34,6 +44,7 @@ void	parse_map(t_data *d)
 
 	i = -1;
 	j = -1;
+	d->collec = 0;
 	while (++i < d->sizecollum)
 	{
 		j = -1;
@@ -44,13 +55,12 @@ void	parse_map(t_data *d)
 			if (d->map[i][j] == '0' || d->map[i][j] == 'P' ||
 				d->map[i][j] == 'E' || d->map[i][j] == 'C')
 				check_valid_char(i, j, d);
-			if (d->map[i][j] == 'P')
-				d->nbplayer += 1;
 			if (d->nbplayer > 1)
 				ft_error("Error\nNumber of player error\n", d);
 		}
-		printf("%s\n", d->map[i]);
 	}
+	if (d->nbplayer < 1)
+		ft_error("Error\nNumber of player error\n", d);
 }
 
 void	stockage_map(t_data *d, char *file)
@@ -68,6 +78,7 @@ void	stockage_map(t_data *d, char *file)
 	fd = open(file, O_RDONLY);
 	if (!fd)
 		ft_error("Error\nCouldn't open the .ber\n", d);
+	d->cubsize = (d->win_x / 1.5) / d->sizeline + d->sizeline / 4;
 	while (gnl > 0 && i < d->sizecollum)
 	{
 		gnl = get_next_line(fd, &line);
