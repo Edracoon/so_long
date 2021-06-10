@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:28 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 10:59:53 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:34:22 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_data(t_data *d)
 	d->nbplayer = 0;
 	d->win_x = 0;
 	d->win_y = 0;
-	d->minimap = 0;
+	d->cubsize = 0;
 	d->posx = 0;
 	d->posy = 0;
 	d->kill_win = 0;
@@ -49,8 +49,8 @@ void	init_data(t_data *d)
 	d->backward = 0;
 	d->leftward = 0;
 	d->rightward = 0;
-	d->rot_left = 0;
-	d->rot_right = 0;
+	d->sizeline = 0;
+	d->sizecollum = 0;
 }
 
 int	main(int ac, char **av)
@@ -58,10 +58,10 @@ int	main(int ac, char **av)
 	t_data d;
 
 	if (ac != 2)
-		ft_error("Error:\nArguments\n");
+		ft_error("Error:\nNumber of arguments\n");
 	init_data(&d);
 	if (!check_map_name(av[1]))
 		ft_error("Error:\nMap name invalid\n");
-	printf("ok\n");
+	parse_ber(av[1], &d);
 	return (1);
 }

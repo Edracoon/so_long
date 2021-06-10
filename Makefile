@@ -1,10 +1,14 @@
 NAME = so_long
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 LIB_DIR = /usr/local/include
 
-SRCS = srcs/main.c
+SRCS =	srcs/main.c \
+		srcs/init_map_ber.c \
+		srcs/stockage_map.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -18,7 +22,7 @@ libft:
 
 clean:
 			rm -f $(OBJS)
-			make clean -C ./libft
+			#make clean -C ./libft
 
 fclean:		clean
 			rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 10:54:45 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/10 11:36:18 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
-# include "../get_next_line/get_next_line.h"
-# include "../libft/libft.h"
 
 typedef struct s_mlx
 {
@@ -37,7 +35,9 @@ typedef struct s_data
 	int			nbplayer;
 	int			win_x;
 	int			win_y;
-	int			minimap;
+	int			sizeline;
+	int			sizecollum;
+	int			cubsize;
 
 	double		posx;
 	double		posy;
@@ -46,9 +46,11 @@ typedef struct s_data
 	int			backward;
 	int			leftward;
 	int			rightward;
-	int			rot_left;
-	int			rot_right;
 	t_mlx		*mlx;
 }	t_data;
+
+void	stockage_map(t_data *d, char *file);
+void	parse_ber(char *file, t_data *d);
+void	ft_error(char *str);
 
 #endif
