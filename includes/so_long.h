@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/11 07:54:07 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:22:50 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ typedef struct s_data
 	int			backward;
 	int			leftward;
 	int			rightward;
+
+	int			xmapindex;
+	int			ymapindex;
 
 	int			collec;
 	int			nbmoov;

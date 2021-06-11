@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:10:08 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/11 12:34:12 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 19:36:17 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ void	affiche_minimap(t_data *d, int x, int y, int i)
 	}
 	i = 0;
 	j = 0;
+	i = d->ymapindex * 8;
+	j = d->xmapindex * 20;
+	if (d->i > d->ymapindex * 8)
+		d->ymapindex++;
+	else if (d->i < d->ymapindex - 1 * 8)
+		d->ymapindex--;
+	if (d->j > d->xmapindex * 20)
+		d->xmapindex++;
+	else if (d->j < d->xmapindex - 1 * 20)
+		d->xmapindex--;
 	while (d->sizecollum > i && d->map[i][j] && y < 9 * d->cubsize)
 	{
 		x = 0;
@@ -78,20 +88,23 @@ void	affiche_minimap(t_data *d, int x, int y, int i)
 		{
 			if (d->map[i][j] == '1')
 				affiche_cube(d, x, y, 0x00117864);
-			if (d->map[d->i][j] == '0')
+			if (d->map[i][j] == '0')
 				affiche_cube(d, x, y, 0x0048c9b0);
 			if (d->map[i][j] == 'C')
 				affiche_cube(d, x, y, 0x00ff0000);
-			if (d->map[i][j] == 'E')
+			if (d->map[i][j] == 'E' || d->map[i][j] == 'D')
 				affiche_cube(d, x, y, 0x0036f3ff);
-			affiche_perso(d, d->posx, d->posy, 0x00ebfe00);
+			if (d->map[i][j] == 'P' ||d->map[i][j] == 'D')
+				affiche_perso(d, x, y, 0x00ebfe00);
 			x += d->cubsize;
 			j++;
 		}
 		i++;
-		j = 0;
-		if (j < 0)
-			j = 0;
+		if (d->j > d->xmapindex * 20)
+			d->xmapindex++;
+		else if (d->j < d->xmapindex - 1 * 20)
+			d->xmapindex--;
+		j = d->xmapindex * 20;
 		y += d->cubsize;
 	}
 }
@@ -106,8 +119,6 @@ int	ft_affiche_image(t_data *d)
 
 void	mlx_main(t_data *d)
 {
-	d->i = d->posy / d->cubsize;
-	d->j = d->posx / d->cubsize;
 	d->mlx = mlx_init();
 	d->mlx_win = mlx_new_window(d->mlx, d->win_x, d->win_y, "so_long");
 	d->img = mlx_new_image(d->mlx, d->win_x, d->win_y);
