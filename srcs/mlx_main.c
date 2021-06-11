@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:10:08 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 19:04:47 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:34:12 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,26 @@ void	affiche_minimap(t_data *d, int x, int y, int i)
 	int	j;
 
 	j = 0;
-	while (d->sizecollum > i && d->map[i][j])
+	while (i < d->win_y)
+	{
+		j = 0;
+		while (j < d->win_x)
+		{
+			my_mlx_pixel_put(d, j, i, 0x0048c9b0);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	j = 0;
+	while (d->sizecollum > i && d->map[i][j] && y < 9 * d->cubsize)
 	{
 		x = 0;
-		while (d->sizeline > j && d->map[i][j])
+		while (d->sizeline > j && d->map[i][j] && x < 21 * d->cubsize)
 		{
 			if (d->map[i][j] == '1')
 				affiche_cube(d, x, y, 0x00117864);
-			if (d->map[i][j] == '0')
+			if (d->map[d->i][j] == '0')
 				affiche_cube(d, x, y, 0x0048c9b0);
 			if (d->map[i][j] == 'C')
 				affiche_cube(d, x, y, 0x00ff0000);
@@ -78,6 +90,8 @@ void	affiche_minimap(t_data *d, int x, int y, int i)
 		}
 		i++;
 		j = 0;
+		if (j < 0)
+			j = 0;
 		y += d->cubsize;
 	}
 }
@@ -92,9 +106,8 @@ int	ft_affiche_image(t_data *d)
 
 void	mlx_main(t_data *d)
 {
-	printf("CICI IQIWEQWIE %i\n", d->win_y / d->cubsize);
-	if (d->sizecollum * d->cubsize > d->win_y)
-		d->sizecollum = d->win_y / d->cubsize;
+	d->i = d->posy / d->cubsize;
+	d->j = d->posx / d->cubsize;
 	d->mlx = mlx_init();
 	d->mlx_win = mlx_new_window(d->mlx, d->win_x, d->win_y, "so_long");
 	d->img = mlx_new_image(d->mlx, d->win_x, d->win_y);

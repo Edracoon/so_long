@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 17:09:17 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 07:54:07 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_data
 	int			sizeline;
 	int			sizecollum;
 	int			cubsize;
+	int			i;
+	int			j;
 
 	int			posx;
 	int			posy;
@@ -37,7 +39,6 @@ typedef struct s_data
 	int			rightward;
 
 	int			collec;
-
 	int			nbmoov;
 
 	void		*mlx_win;

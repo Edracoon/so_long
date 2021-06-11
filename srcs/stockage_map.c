@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:34:01 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 17:15:28 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:07:18 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	stockage_map(t_data *d, char *file)
 	fd = open(file, O_RDONLY);
 	if (!fd)
 		ft_error("Error\nCouldn't open the .ber\n", d);
-	d->cubsize = (d->win_x / 1.5) / d->sizeline + d->sizeline / 4;
 	while (gnl > 0 && i < d->sizecollum)
 	{
 		gnl = get_next_line(fd, &line);

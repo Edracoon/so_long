@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:28 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 18:49:48 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:21:02 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 void	ft_error(char *str, t_data *d)
 {
 	(void)d;
-	int	i;
-
-	i = -1;
 	ft_putstr_fd(str, STDOUT_FILENO);
 	exit(0);
 }
@@ -42,9 +39,10 @@ int	check_map_name(char *av)
 
 void	init_data(t_data *d)
 {
-	d->win_x = 1200;
-	d->win_y = 600;
+	d->win_x = 1175;
+	d->win_y = 505;
 	d->nbplayer = 0;
+	d->cubsize = 56;
 	d->posx = 0;
 	d->posy = 0;
 	d->kill_win = 0;

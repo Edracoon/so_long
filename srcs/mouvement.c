@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:58:38 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/10 17:10:21 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/11 12:36:38 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	ft_forward(t_data *d)
 {
 	if (d->map[(d->posy / d->cubsize) - 1][(d->posx / d->cubsize)] != '1')
-		d->posy -= d->cubsize;
+		d->posy -= 1;
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize)] == 'E')
 	{
 		if (d->collec > 0)
@@ -31,8 +31,8 @@ void	ft_forward(t_data *d)
 
 void	ft_backward(t_data *d)
 {
-	if (d->map[(d->posy / d->cubsize) + 1][(d->posx / d->cubsize)] != '1')
-		d->posy += d->cubsize;
+	if (d->map[(d->posy / d->cubsize) + d->i + 1][(d->posx / d->cubsize)] != '1')
+		d->posy += 1;
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize)] == 'E')
 	{
 		if (d->collec > 0)
@@ -47,7 +47,7 @@ void	ft_backward(t_data *d)
 void	ft_rightward(t_data *d)
 {
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize) + 1] != '1')
-		d->posx += d->cubsize;
+		d->posx += 1;
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize)] == 'E')
 	{
 		if (d->collec > 0)
@@ -62,7 +62,7 @@ void	ft_rightward(t_data *d)
 void	ft_leftward(t_data *d)
 {
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize) - 1] != '1')
-		d->posx -= d->cubsize;
+		d->posx -= 1;
 	if (d->map[(d->posy / d->cubsize)][(d->posx / d->cubsize)] == 'E')
 	{
 		if (d->collec > 0)
