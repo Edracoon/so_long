@@ -9,6 +9,8 @@ SRCS =	srcs/main.c \
 		srcs/mouvement.c \
 		srcs/key_pressed.c \
 		srcs/utils.c \
+		srcs/map_case.c \
+		srcs/print_map_char.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c
 

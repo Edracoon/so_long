@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:58:38 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/11 17:37:19 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/12 16:18:27 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,108 +16,108 @@
 
 void	ft_forward(t_data *d)
 {
-	if (d->map[(d->i) - 1][(d->j)] == 'E')
+	if (d->map[(d->pi) - 1][(d->pj)] == 'E')
 	{
 		if (d->collec > 0)
 			ft_putstr_fd("You must collect every collectibles to escape\n", 1);
 		else if (d->collec == 0)
 			ft_destroy_windows(d);
 	}
-	if (d->map[d->i - 1][d->j] == 'C')
+	if (d->map[d->pi - 1][d->pj] == 'C')
 		d->collec--;
-	if (d->map[(d->i) - 1][(d->j)] != '1')
+	if (d->map[(d->pi) - 1][(d->pj)] != '1')
 	{
 		ft_putnbr_fd(++d->nbmoov, 1);
 		ft_putchar_fd('\n', 1);
-		if (d->map[d->i - 1][d->j] == 'E')
-			d->map[(d->i - 1)][(d->j)] = 'D';
+		if (d->map[d->pi - 1][d->pj] == 'E')
+			d->map[(d->pi - 1)][(d->pj)] = 'D';
 		else
-			d->map[(d->i - 1)][(d->j)] = 'P';
-		if (!(d->map[d->i][d->j] == 'E' || d->map[d->i][d->j] == 'D'))
-			d->map[(d->i)][(d->j)] = '0';
-		else if (d->map[d->i][d->j] == 'D')
-			d->map[(d->i)][(d->j)] = 'E';
-		d->i -= 1;
+			d->map[(d->pi - 1)][(d->pj)] = 'P';
+		if (!(d->map[d->pi][d->pj] == 'E' || d->map[d->pi][d->pj] == 'D'))
+			d->map[(d->pi)][(d->pj)] = '0';
+		else if (d->map[d->pi][d->pj] == 'D')
+			d->map[(d->pi)][(d->pj)] = 'E';
+		d->pi -= 1;
 	}
 }
 
 void	ft_backward(t_data *d)
 {
-	if (d->map[(d->i) + 1][(d->j)] == 'E')
+	if (d->map[(d->pi) + 1][(d->pj)] == 'E')
 	{
 		if (d->collec > 0)
 			ft_putstr_fd("You must collect every collectibles to escape\n", 1);
 		else if (d->collec == 0)
 			ft_destroy_windows(d);
 	}
-	if (d->map[d->i + 1][d->j] == 'C')
+	if (d->map[d->pi + 1][d->pj] == 'C')
 		d->collec--;
-	if (d->map[(d->i) + 1][(d->j)] != '1')
+	if (d->map[(d->pi) + 1][(d->pj)] != '1')
 	{
 		ft_putnbr_fd(++d->nbmoov, 1);
 		ft_putchar_fd('\n', 1);
-		if (d->map[d->i + 1][d->j] == 'E')
-			d->map[(d->i + 1)][(d->j)] = 'D';
+		if (d->map[d->pi + 1][d->pj] == 'E')
+			d->map[(d->pi + 1)][(d->pj)] = 'D';
 		else
-			d->map[(d->i + 1)][(d->j)] = 'P';
-		if (!(d->map[d->i][d->j] == 'E' || d->map[d->i][d->j] == 'D'))
-			d->map[(d->i)][(d->j)] = '0';
-		else if (d->map[d->i][d->j] == 'D')
-			d->map[(d->i)][(d->j)] = 'E';
-		d->i += 1;
+			d->map[(d->pi + 1)][(d->pj)] = 'P';
+		if (!(d->map[d->pi][d->pj] == 'E' || d->map[d->pi][d->pj] == 'D'))
+			d->map[(d->pi)][(d->pj)] = '0';
+		else if (d->map[d->pi][d->pj] == 'D')
+			d->map[(d->pi)][(d->pj)] = 'E';
+		d->pi += 1;
 	}
 }
 
 void	ft_rightward(t_data *d)
 {
-	if (d->map[(d->i)][(d->j + 1)] == 'E')
+	if (d->map[(d->pi)][(d->pj + 1)] == 'E')
 	{
 		if (d->collec > 0)
 			ft_putstr_fd("You must collect every collectibles to escape\n", 1);
 		else if (d->collec == 0)
 			ft_destroy_windows(d);
 	}
-	if (d->map[d->i][d->j + 1] == 'C')
+	if (d->map[d->pi][d->pj + 1] == 'C')
 		d->collec--;
-	if (d->map[(d->i)][(d->j) + 1] != '1')
+	if (d->map[(d->pi)][(d->pj) + 1] != '1')
 	{
 		ft_putnbr_fd(++d->nbmoov, 1);
 		ft_putchar_fd('\n', 1);
-		if (d->map[d->i][d->j + 1] == 'E')
-			d->map[(d->i)][(d->j) + 1] = 'D';
+		if (d->map[d->pi][d->pj + 1] == 'E')
+			d->map[(d->pi)][(d->pj) + 1] = 'D';
 		else
-			d->map[(d->i)][(d->j) + 1] = 'P';
-		if (!(d->map[d->i][d->j] == 'E' || d->map[d->i][d->j] == 'D'))
-			d->map[(d->i)][(d->j)] = '0';
-		else if (d->map[d->i][d->j] == 'D')
-			d->map[(d->i)][(d->j)] = 'E';
-		d->j += 1;
+			d->map[(d->pi)][(d->pj) + 1] = 'P';
+		if (!(d->map[d->pi][d->pj] == 'E' || d->map[d->pi][d->pj] == 'D'))
+			d->map[(d->pi)][(d->pj)] = '0';
+		else if (d->map[d->pi][d->pj] == 'D')
+			d->map[(d->pi)][(d->pj)] = 'E';
+		d->pj += 1;
 	}
 }
 
 void	ft_leftward(t_data *d)
 {
-	if (d->map[(d->i)][(d->j) - 1] == 'E')
+	if (d->map[(d->pi)][(d->pj) - 1] == 'E')
 	{
 		if (d->collec > 0)
 			ft_putstr_fd("You must collect every collectibles to escape\n", 1);
 		else if (d->collec == 0)
 			ft_destroy_windows(d);
 	}
-	if (d->map[d->i][d->j - 1] == 'C')
+	if (d->map[d->pi][d->pj - 1] == 'C')
 		d->collec--;
-	if (d->map[(d->i)][(d->j) - 1] != '1')
+	if (d->map[(d->pi)][(d->pj) - 1] != '1')
 	{
 		ft_putnbr_fd(++d->nbmoov, 1);
 		ft_putchar_fd('\n', 1);
-		if (d->map[d->i][d->j - 1] == 'E')
-			d->map[(d->i)][(d->j) - 1] = 'D';
+		if (d->map[d->pi][d->pj - 1] == 'E')
+			d->map[(d->pi)][(d->pj) - 1] = 'D';
 		else
-			d->map[(d->i)][(d->j) - 1] = 'P';
-		if (!(d->map[d->i][d->j] == 'E' || d->map[d->i][d->j] == 'D'))
-			d->map[(d->i)][(d->j)] = '0';
-		else if (d->map[d->i][d->j] == 'D')
-			d->map[(d->i)][(d->j)] = 'E';
-		d->j -= 1;
+			d->map[(d->pi)][(d->pj) - 1] = 'P';
+		if (!(d->map[d->pi][d->pj] == 'E' || d->map[d->pi][d->pj] == 'D'))
+			d->map[(d->pi)][(d->pj)] = '0';
+		else if (d->map[d->pi][d->pj] == 'D')
+			d->map[(d->pi)][(d->pj)] = 'E';
+		d->pj -= 1;
 	}
 }

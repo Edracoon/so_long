@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 11:34:01 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/11 16:46:24 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/12 16:00:10 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	check_valid_char(int i, int j, t_data *d)
 		ft_error("Error\nMap isn't closed\n", d);
 	if (d->map[i][j] == 'P')
 	{
-		d->j = j;
-		d->i = i;
+		d->pj = j;
+		d->pi = i;
 		d->nbplayer += 1;
 		d->map[i][j] = 'P';
 	}

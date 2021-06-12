@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:28 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/11 19:15:31 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/12 16:39:37 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_map_name(char *av)
 
 void	init_data(t_data *d)
 {
-	d->win_x = 1175;
+	d->win_x = 1176;
 	d->win_y = 505;
 	d->nbplayer = 0;
 	d->cubsize = 56;
