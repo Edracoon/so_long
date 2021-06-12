@@ -27,6 +27,8 @@ void	ft_forward(t_data *d)
 		d->collec--;
 	if (d->map[(d->i) - 1][(d->j)] != '1')
 	{
+		ft_putnbr_fd(++d->nbmoov, 1);
+		ft_putchar_fd('\n', 1);
 		if (d->map[d->i - 1][d->j] == 'E')
 			d->map[(d->i - 1)][(d->j)] = 'D';
 		else
@@ -37,8 +39,6 @@ void	ft_forward(t_data *d)
 			d->map[(d->i)][(d->j)] = 'E';
 		d->i -= 1;
 	}
-	ft_putnbr_fd(++d->nbmoov, 1);
-	ft_putchar_fd('\n', 1);
 }
 
 void	ft_backward(t_data *d)
@@ -54,6 +54,8 @@ void	ft_backward(t_data *d)
 		d->collec--;
 	if (d->map[(d->i) + 1][(d->j)] != '1')
 	{
+		ft_putnbr_fd(++d->nbmoov, 1);
+		ft_putchar_fd('\n', 1);
 		if (d->map[d->i + 1][d->j] == 'E')
 			d->map[(d->i + 1)][(d->j)] = 'D';
 		else
@@ -64,8 +66,6 @@ void	ft_backward(t_data *d)
 			d->map[(d->i)][(d->j)] = 'E';
 		d->i += 1;
 	}
-	ft_putnbr_fd(++d->nbmoov, 1);
-	ft_putchar_fd('\n', 1);
 }
 
 void	ft_rightward(t_data *d)
@@ -81,6 +81,8 @@ void	ft_rightward(t_data *d)
 		d->collec--;
 	if (d->map[(d->i)][(d->j) + 1] != '1')
 	{
+		ft_putnbr_fd(++d->nbmoov, 1);
+		ft_putchar_fd('\n', 1);
 		if (d->map[d->i][d->j + 1] == 'E')
 			d->map[(d->i)][(d->j) + 1] = 'D';
 		else
@@ -91,8 +93,6 @@ void	ft_rightward(t_data *d)
 			d->map[(d->i)][(d->j)] = 'E';
 		d->j += 1;
 	}
-	ft_putnbr_fd(++d->nbmoov, 1);
-	ft_putchar_fd('\n', 1);
 }
 
 void	ft_leftward(t_data *d)
@@ -108,6 +108,8 @@ void	ft_leftward(t_data *d)
 		d->collec--;
 	if (d->map[(d->i)][(d->j) - 1] != '1')
 	{
+		ft_putnbr_fd(++d->nbmoov, 1);
+		ft_putchar_fd('\n', 1);
 		if (d->map[d->i][d->j - 1] == 'E')
 			d->map[(d->i)][(d->j) - 1] = 'D';
 		else
@@ -118,6 +120,4 @@ void	ft_leftward(t_data *d)
 			d->map[(d->i)][(d->j)] = 'E';
 		d->j -= 1;
 	}
-	ft_putnbr_fd(++d->nbmoov, 1);
-	ft_putchar_fd('\n', 1);
 }

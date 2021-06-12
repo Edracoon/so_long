@@ -18,6 +18,17 @@
 # include <unistd.h>
 # include <mlx.h>
 
+typedef struct s_textu
+{
+	void		*mlx_win;
+	void		*mlx;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}	t_textu;
+
 typedef struct s_data
 {
 	char		**map;
@@ -51,6 +62,8 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+
+	t_textu text[4];
 
 }	t_data;
 
