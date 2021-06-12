@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:10:08 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 16:39:45 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/06/12 17:49:11 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 void	print_backgroundcolor(t_data *d, int i, int j)
 {
-	j = 1;
-	while (i < d->win_y - 1)
+	j = 0;
+	while (i < d->win_y)
 	{
-		j = 1;
+		j = 0;
 		while (j < d->win_x)
 		{
 			my_mlx_pixel_put(d, j, i, 0xff000000);
