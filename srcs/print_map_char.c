@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:38:41 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 17:48:04 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 18:27:33 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	affiche_perso(t_data *d, int x, int y)
 				d->color = 0x0058bf7b;
 			if (d->color == 4278190080 && d->map[d->i][d->j] == 'D')
 				d->color = 0xff58bf7b;
+			if (d->color == 0xff0000)
+				d->color = get_color_textu(d, d->tx, d->ty, 4);
 			my_mlx_pixel_put(d, x, y, d->color);
 			d->tx++;
 			x++;
@@ -43,24 +45,28 @@ void	affiche_perso(t_data *d, int x, int y)
 	}
 }
 
-void	affiche_cube(t_data *d, int x, int y, int couleur)
+void	affiche_floor(t_data *d, int x, int y)
 {
-	int	max_y;
-	int	max_x;
-	int	temp;
+	int				temp;
 
-	temp = y;
-	max_y = y + d->cubsize;
-	max_x = x + d->cubsize;
-	while (x < max_x)
+	temp = x;
+	d->maxx = x + d->cubsize;
+	d->maxy = y + d->cubsize;
+	d->ty = 0;
+	d->tx = 0;
+	while (y < d->maxy)
 	{
-		y = temp;
-		while (y < max_y)
+		x = temp;
+		d->tx = 0;
+		while (x < d->maxx)
 		{
-			my_mlx_pixel_put(d, x, y, couleur);
-			y++;
+			d->color = get_color_textu(d, d->tx, d->ty, 4);
+			my_mlx_pixel_put(d, x, y, d->color);
+			d->tx++;
+			x++;
 		}
-		x++;
+		y++;
+		d->ty++;
 	}
 }
 

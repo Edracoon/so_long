@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:36:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 16:38:50 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 19:25:53 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ void	get_xpm_textures(t_data *d)
 	imgsiz = 56;
 	d->text[0].img = mlx_xpm_file_to_image(d->mlx, "./textures/ChickenLeg.xpm",
 			&imgsiz, &imgsiz);
-	d->text[1].img = mlx_xpm_file_to_image(d->mlx, "./textures/viking.xpm",
+	d->text[1].img = mlx_xpm_file_to_image(d->mlx, "./textures/viking_left.xpm",
 			&imgsiz, &imgsiz);
-	d->text[2].img = mlx_xpm_file_to_image(d->mlx, "./textures/blocks.xpm",
+	d->text[2].img = mlx_xpm_file_to_image(d->mlx, "./textures/mur.xpm",
 			&imgsiz, &imgsiz);
 	d->text[3].img = mlx_xpm_file_to_image(d->mlx, "./textures/door.xpm",
+			&imgsiz, &imgsiz);
+	d->text[4].img = mlx_xpm_file_to_image(d->mlx, "./textures/floor.xpm",
+			&imgsiz, &imgsiz);
+	d->text[5].img = mlx_xpm_file_to_image(d->mlx, "./textures/viking_back.xpm",
+			&imgsiz, &imgsiz);
+	d->text[6].img = mlx_xpm_file_to_image(d->mlx, "./textures/viking_right.xpm",
+			&imgsiz, &imgsiz);
+	d->text[7].img = mlx_xpm_file_to_image(d->mlx, "./textures/viking_front.xpm",
 			&imgsiz, &imgsiz);
 	d->text[0].addr = mlx_get_data_addr(d->text[0].img,
 			&d->text[0].bits_per_pixel,
@@ -39,6 +47,18 @@ void	get_xpm_textures(t_data *d)
 	d->text[3].addr = mlx_get_data_addr(d->text[3].img,
 			&d->text[3].bits_per_pixel,
 			&d->text[3].line_length, &d->text[3].endian);
+	d->text[4].addr = mlx_get_data_addr(d->text[4].img,
+			&d->text[4].bits_per_pixel,
+			&d->text[4].line_length, &d->text[4].endian);
+	d->text[5].addr = mlx_get_data_addr(d->text[5].img,
+			&d->text[5].bits_per_pixel,
+			&d->text[5].line_length, &d->text[5].endian);
+	d->text[6].addr = mlx_get_data_addr(d->text[6].img,
+			&d->text[6].bits_per_pixel,
+			&d->text[6].line_length, &d->text[6].endian);
+	d->text[7].addr = mlx_get_data_addr(d->text[7].img,
+			&d->text[7].bits_per_pixel,
+			&d->text[7].line_length, &d->text[7].endian);
 }
 
 int	mapj_chose(int j, t_data *d)

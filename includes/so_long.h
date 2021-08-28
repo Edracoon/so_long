@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:44 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 16:21:49 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 19:25:33 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
+
+# define CHICKEN	0
+# define MUR		2
+# define DOOR		3
+# define FLOOR		4
 
 typedef struct s_textu
 {
@@ -77,7 +82,9 @@ typedef struct s_data
 	int				line_length;
 	int				endian;
 
-	t_textu			text[4];
+	int				playdir;
+
+	t_textu			text[8];
 }	t_data;
 
 int				mapj_chose(int j, t_data *d);
@@ -97,6 +104,7 @@ void			ft_forward(t_data *d);
 void			affiche_perso(t_data *d, int x, int y);
 void			affiche_cube(t_data *d, int x, int y, int couleur);
 void			affiche_wall(t_data *d, int x, int y);
+void			affiche_floor(t_data *d, int x, int y);
 void			affiche_collectibles(t_data *d, int x, int y);
 void			affiche_door(t_data *d, int x, int y);
 unsigned int	get_color_textu(t_data *d, int x, int y, int nb);

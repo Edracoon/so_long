@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 13:10:08 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 17:49:11 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 19:09:42 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,30 @@ void	boucle_x_norme(t_data *d, int y)
 	while (d->sizeline > d->j && d->map[d->i][d->j] && x < 21 * d->cubsize)
 	{
 		if (d->map[d->i][d->j] == '1')
-			affiche_wall(d, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[MUR].img, x, y);
 		if (d->map[d->i][d->j] == '0')
-			affiche_cube(d, x, y, 0x0058bf7b);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[FLOOR].img, x, y);
 		if (d->map[d->i][d->j] == 'C')
-			affiche_collectibles(d, x, y);
-		if (d->map[d->i][d->j] == 'E' || d->map[d->i][d->j] == 'D')
-			affiche_door(d, x, y);
-		if (d->map[d->i][d->j] == 'P' || d->map[d->i][d->j] == 'D')
-			affiche_perso(d, x, y);
+		{
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[FLOOR].img, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[CHICKEN].img, x, y);
+		}
+		if (d->map[d->i][d->j] == 'E')
+		{
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[FLOOR].img, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[DOOR].img, x, y);
+		}
+		if (d->map[d->i][d->j] == 'P')
+		{
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[FLOOR].img, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[d->playdir].img, x, y);
+		}
+		if (d->map[d->i][d->j] == 'D')
+		{
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[FLOOR].img, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[DOOR].img, x, y);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->text[d->playdir].img, x, y);
+		}
 		x += d->cubsize;
 		d->j++;
 	}
@@ -75,7 +90,7 @@ int	ft_affiche_image(t_data *d)
 	print_backgroundcolor(d, 0, 0);
 	affiche_minimap(d);
 	ft_mouvement(d);
-	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img, 0, 0);
+	// mlx_put_image_to_window(d->mlx, d->mlx_win, d->img, 0, 0);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 16:58:38 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 16:18:27 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 19:26:09 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	ft_forward(t_data *d)
 		else if (d->collec == 0)
 			ft_destroy_windows(d);
 	}
-	if (d->map[d->pi - 1][d->pj] == 'C')
+	if (d->map[d->pi + 1][d->pj] == 'C')
+	{
 		d->collec--;
+	}
 	if (d->map[(d->pi) - 1][(d->pj)] != '1')
 	{
 		ft_putnbr_fd(++d->nbmoov, 1);
@@ -39,6 +41,7 @@ void	ft_forward(t_data *d)
 			d->map[(d->pi)][(d->pj)] = 'E';
 		d->pi -= 1;
 	}
+	d->playdir = 5;
 }
 
 void	ft_backward(t_data *d)
@@ -66,6 +69,7 @@ void	ft_backward(t_data *d)
 			d->map[(d->pi)][(d->pj)] = 'E';
 		d->pi += 1;
 	}
+	d->playdir = 7;
 }
 
 void	ft_rightward(t_data *d)
@@ -93,6 +97,7 @@ void	ft_rightward(t_data *d)
 			d->map[(d->pi)][(d->pj)] = 'E';
 		d->pj += 1;
 	}
+	d->playdir = 6;
 }
 
 void	ft_leftward(t_data *d)
@@ -120,4 +125,5 @@ void	ft_leftward(t_data *d)
 			d->map[(d->pi)][(d->pj)] = 'E';
 		d->pj -= 1;
 	}
+	d->playdir = 1;
 }

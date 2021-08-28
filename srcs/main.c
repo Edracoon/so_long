@@ -6,7 +6,7 @@
 /*   By: epfennig <epfennig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 09:50:28 by epfennig          #+#    #+#             */
-/*   Updated: 2021/06/12 16:39:37 by epfennig         ###   ########.fr       */
+/*   Updated: 2021/08/28 19:09:24 by epfennig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_data(t_data *d)
 	d->nbmoov = 0;
 	d->ymapindex = 0;
 	d->xmapindex = 0;
+	d->playdir = 1;
 }
 
 int	main(int ac, char **av)
